@@ -1,0 +1,5 @@
+# Environnement variables
+.env
+
+# Packages
+vendor
