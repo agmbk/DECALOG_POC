@@ -33,7 +33,7 @@ try{
     $body = file_get_contents('php://input');
     $json = json_decode($body);
 } catch(Exception $e){
-    echo "Invalid body. Please use {location: {lat: float, lng: float, address?: string}}";
+    echo "Error: Invalid body. Please use {location: {lat: float, lng: float, address?: string}}";
     return;
 }
 
@@ -42,7 +42,7 @@ try{
  * Check the validity of the payload
  */
 if (!property_exists($json, 'location')) {
-    echo "Missing body. Please use {location: {lat: float, lng: float, address?: string}}";
+    echo "Error: Missing body. Please use {location: {lat: float, lng: float, address?: string}}";
     return;
 }
 
@@ -52,7 +52,7 @@ if (!property_exists($location, 'lat')
     || !property_exists($location, 'lng')
     || !is_numeric($location->lat)
     || !is_numeric($location->lng)) {
-    echo "Invalid body. Please use {location: {lat: float, lng: float, address?: string}}";
+    echo "Error: Invalid body. Please use {location: {lat: float, lng: float, address?: string}}";
     return;
 }
 
