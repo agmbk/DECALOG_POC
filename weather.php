@@ -29,10 +29,10 @@ const weekdays = ["Mon" => "Lun", "Tue" => "Mar", "Wed" => "Mer", "Thu" => "Jeu"
 /**
  * JSON body parser
  */
-try{
+try {
     $body = file_get_contents('php://input');
     $json = json_decode($body);
-} catch(Exception $e){
+} catch (Exception $e) {
     echo "Error: Invalid body. Please use {location: {lat: float, lng: float, address?: string}}";
     return;
 }
@@ -82,10 +82,10 @@ $fp = fopen("$url?$queryString", 'r');
 /**
  * Body parser
  */
-try{
+try {
     $body = stream_get_contents($fp);
     $openWeatherData = json_decode($body);
-} catch(Exception $e){
+} catch (Exception $e) {
     echo "Error: Invalid open weather API key";
     return;
 }
@@ -112,7 +112,7 @@ function oneDay($weatherInfo): void
             <br/>
             Nuit: <strong>{$weatherInfo->temp->night} °C</strong>
             <br/>
-            Vent : " . (int) $weatherInfo->wind_speed * 3.6 . " km/h
+            Vent : " . (int)$weatherInfo->wind_speed * 3.6 . " km/h
             <br/>
             Humidité : {$weatherInfo->humidity} %
             <br/>
@@ -133,7 +133,7 @@ function oneDay($weatherInfo): void
             <strong><?php echo $openWeatherData->current->temp; ?> °C</strong><br/>
             <?php echo strtoupper($openWeatherData->current->weather[0]->description[0]) . substr($openWeatherData->current->weather[0]->description, 1); ?>
             <br/>
-            Vent : <?php echo (int) $openWeatherData->current->wind_speed * 3.6; ?> km/h<br/>
+            Vent : <?php echo (int)$openWeatherData->current->wind_speed * 3.6; ?> km/h<br/>
             Humidité : <?php echo $openWeatherData->current->humidity; ?> %<br/>
         </span>
     </div>

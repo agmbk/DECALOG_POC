@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  * Documentation at: https://developers.google.com/maps/documentation/javascript/examples/geocoding-reverse
  */
-let map, marker, geocoder, weatherDiv, feedback, infowindow;
+let map, marker, geocoder, weatherDiv, feedback, infowindow, isFirstSearch = true;
 
 function initMap() {
     map = new google.maps.Map(document.getElementById("map"), {
@@ -112,6 +112,11 @@ function geocode(request) {
                 if (!res.ok) return alert('Something went wrong')
                 const html = await res.text()
                 displayWeather(html)
+                if (isFirstSearch) {
+                    showFeedback({Information: 'Cliquez sur la météo pour voir les détails'})
+                    isFirstSearch = false
+                    setTimeout(() => hideFeedback(), 3000)
+                }
             })
 
             hideFeedback()
@@ -123,9 +128,7 @@ function geocode(request) {
                 if (e.code === "ZERO_RESULTS")
                     return showFeedback({Erreur: 'Il n\'y pas de résultat pour cette requête'})
             }
-
-            showFeedback('Une erreur est survenue')
-            console.error(e)
+            showFeedback(`Une erreur est survenue. ${e.toString()}`)
         });
 }
 

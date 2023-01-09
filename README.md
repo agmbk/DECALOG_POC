@@ -11,12 +11,12 @@ https://bootswatch.com/flatly/
 
 ## Feedback
 
-Nice weekend project  
+Nice weekend project (~10hrs)
 PHP dates are probably messed up  
 ~~Responsive until 370px width, should be 320px~~ ~330px width   
 I should add the input autocomplete but ...  
 Plan and satellite view added  
-Google street is blocked by cors ?? Idk how to fix that  
+Google street is blocked by cors ?? Idk how to fix that
 
 ## How to run it
 
