@@ -20,16 +20,16 @@ Google street is blocked by cors ?? Idk how to fix that
 
 ## How to run it
 
+Add the following environments variables:  
+`GEOCODE_API_KEY`  
+From: https://developers.google.com/maps/documentation/javascript/examples/geocoding-reverse  
+`ONE_CALL_API`  
+From: https://openweathermap.org/api/one-call-3  
 Open a shell in the project root.  
 Install composer if needed: https://getcomposer.org/download  
 Install the requirements with: `composer install`  
 Launch the web server: `php -S localhost:8000`.  
 Open the link http://localhost:8000/index.php in your browser.  
-Add the following environments variables:
-`GEOCODE_API_KEY`  
-From: https://developers.google.com/maps/documentation/javascript/examples/geocoding-reverse  
-`ONE_CALL_API`  
-From: https://openweathermap.org/api/one-call-3
 
 ## How to use it
 
