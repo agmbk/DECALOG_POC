@@ -79,9 +79,16 @@ $queryString = http_build_query([
 
 $fp = fopen("$url?$queryString", 'r');
 
-$data = stream_get_contents($fp);
-
-$data = json_decode($data);
+/**
+ * Body parser
+ */
+try{
+    $body = stream_get_contents($fp);
+    $openWeatherData = json_decode($body);
+} catch(Exception $e){
+    echo "Error: Invalid open weather API key";
+    return;
+}
 
 /**
  * Display one day and its weather
@@ -118,16 +125,16 @@ function oneDay($weatherInfo): void
 
 <div onclick="this.nextElementSibling.style.display='flex'" class="card bg-light mb-3">
     <div class="card-header">
-        <img src="http://openweathermap.org/img/wn/<?php echo $data->current->weather[0]->icon; ?>@4x.png"
+        <img src="http://openweathermap.org/img/wn/<?php echo $openWeatherData->current->weather[0]->icon; ?>@4x.png"
              alt="weather icon">
     </div>
     <div class="card-body">
         <span>
-            <strong><?php echo $data->current->temp; ?> °C</strong><br/>
-            <?php echo strtoupper($data->current->weather[0]->description[0]) . substr($data->current->weather[0]->description, 1); ?>
+            <strong><?php echo $openWeatherData->current->temp; ?> °C</strong><br/>
+            <?php echo strtoupper($openWeatherData->current->weather[0]->description[0]) . substr($openWeatherData->current->weather[0]->description, 1); ?>
             <br/>
-            Vent : <?php echo (int) $data->current->wind_speed * 3.6; ?> km/h<br/>
-            Humidité : <?php echo $data->current->humidity; ?> %<br/>
+            Vent : <?php echo (int) $openWeatherData->current->wind_speed * 3.6; ?> km/h<br/>
+            Humidité : <?php echo $openWeatherData->current->humidity; ?> %<br/>
         </span>
     </div>
 </div>
@@ -146,7 +153,7 @@ function oneDay($weatherInfo): void
                 </div>
 
                 <div class="card-body">
-                    <?php foreach ($data->daily as $current) oneDay($current); ?>
+                    <?php foreach ($openWeatherData->daily as $current) oneDay($current); ?>
                 </div>
 
             </div>
