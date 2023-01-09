@@ -29,14 +29,20 @@ const weekdays = ["Mon" => "Lun", "Tue" => "Mar", "Wed" => "Mer", "Thu" => "Jeu"
 /**
  * JSON body parser
  */
-$body = file_get_contents('php://input');
-$json = json_decode($body);
+try{
+    $body = file_get_contents('php://input');
+    $json = json_decode($body);
+} catch(Exception $e){
+    echo "Invalid body. Please use {location: {lat: float, lng: float, address?: string}}";
+    return;
+}
+
 
 /**
  * Check the validity of the payload
  */
 if (!property_exists($json, 'location')) {
-    echo "Missing body. Please use {location: {lat: float, lng: float}}";
+    echo "Missing body. Please use {location: {lat: float, lng: float, address?: string}}";
     return;
 }
 
@@ -46,7 +52,7 @@ if (!property_exists($location, 'lat')
     || !property_exists($location, 'lng')
     || !is_numeric($location->lat)
     || !is_numeric($location->lng)) {
-    echo "Invalid body. Please use {location: {lat: float, lng: float}}";
+    echo "Invalid body. Please use {location: {lat: float, lng: float, address?: string}}";
     return;
 }
 
