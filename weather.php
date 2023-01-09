@@ -149,7 +149,7 @@ function oneDay($weatherInfo): void
             <div id="daily" class="card bg-light mb-3">
 
                 <div class="card-header">
-                    <h1><?php echo $json->location->address; ?></h1>
+                    <h1><?php echo $location->address; ?></h1>
                 </div>
 
                 <div class="card-body">
