@@ -30,9 +30,8 @@ function initMap() {
     clearButton.type = "button";
     clearButton.value = "Clear";
     clearButton.classList.add("button", "button-secondary");
-    `<div class="card bg-light mb-3" style="max-width: 20rem;">
-       
-     </div>`
+    `<div class="card bg-light mb-3" style="max-width: 20rem;"></div>`
+    
     weatherDiv = document.createElement("div");
     weatherDiv.id = "weather-container";
     feedback = document.createElement("p");
@@ -59,10 +58,7 @@ function initMap() {
     clear();
 }
 
-showFeedback({Instructions: "Cherchez un lieu, sa localisation s'affichera."});
-
 function clear() {
-    showFeedback({Instructions: "Cherchez un lieu, sa localisation s'affichera."});
     marker.setMap(null);
     weatherDiv.style.display = "none";
 }
